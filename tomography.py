@@ -123,7 +123,7 @@ def animateProcess(scan, F, inverseFFT, real, emitter, rays, projection, fftPlot
 
     fft2dAnim = ax5.imshow(np.log(1.0 + np.abs(F)), cmap='gray', aspect='auto', extent=[-aperture, aperture, -aperture, aperture])
     maskX, maskY = np.meshgrid(np.arange(-aperture, aperture), np.arange(-aperture, aperture))
-    realAnim = ax6.imshow(real, cmap='gray', aspect='auto', extent=[-aperture, aperture, -aperture, aperture])
+    ax6.imshow(real, cmap='gray', aspect='auto', extent=[-aperture, aperture, -aperture, aperture])
 
     ax2.set_xlim(-aperture, aperture)
     ax2.set_ylim(0, scan.max() * 1.4)
