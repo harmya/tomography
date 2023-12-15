@@ -13,12 +13,14 @@ rotationRange = 181
 minSize = 600
 
 def load_image(path):
-    img = Image.open(path).convert('L')
+    img = Image.open(path).convert('L')    
     img = np.array(img)
     
-    if img.shape[0] < minSize:
+    sy, sx = img.shape
+
+    if sy < minSize:
         img = np.pad(img, ((minSize-sy)//2, (minSize-sy)//2), mode='constant', constant_values=0)
-    if img.shape[0] < minSize:
+    if sx < minSize:
         img = np.pad(img, ((minSize-sx)//2, (minSize-sx)//2), mode='constant', constant_values=0)
     
     sy, sx = img.shape
@@ -26,7 +28,7 @@ def load_image(path):
     return img, sx, sy
 
 def init_plots():
-    fig, ((ax1, ax3, ax2), (ax4, ax5, ax6)) = plt.subplots(2, 3, figsize=(11, 7))
+    fig, ((ax1, ax2, ax4), (ax3, ax5, ax6)) = plt.subplots(2, 3, figsize=(11, 7))
     ax1.imshow(img, cmap='gray')
 
     ax1.set_title('Original')
@@ -35,7 +37,7 @@ def init_plots():
     ax3.set_title('Sinogram')
     ax4.set_title('FFT of Projection')
     ax5.set_title('2D FFT from FFT of Projection')
-    ax6.set_title('Inverse FFT of 2D FFT')
+    ax6.set_title('Inverse of 2D FFT')
 
     ax1.set(xticklabels=[])
     ax1.set(yticklabels=[])
@@ -170,5 +172,5 @@ def main():
 
 
 if __name__ == '__main__':
-    img, sx, sy = load_image('assets/brain-side.jpeg')
+    img, sx, sy = load_image('assets/dog.jpeg')
     main()
