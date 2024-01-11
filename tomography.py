@@ -172,5 +172,5 @@ def main():
 
 
 if __name__ == '__main__':
-    img, sx, sy = load_image('assets/dog.jpeg')
+    img, sx, sy = load_image('assets/oneCircle.png')
     main()
